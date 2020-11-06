@@ -40,6 +40,9 @@ $router->agregar('admin/{controlador}/{accion}');
 // Rutas de Modelos Actualizar o eliminar
 $router->agregar('admin/{controlador}/{id:\d+}/{accion}');
 
+// Rutas para imagenes
+$router->agregar('imagenes/{formato:\w+}/{imagen:\w+}', ['controlador' => 'Imagenes', 'accion' => 'servir']);
+
 // Ruta general
 $router->agregar('{controlador}/{accion}');
     

@@ -35,7 +35,7 @@ class Login extends \Core\Controlador
      */
     public function logoutAccion()
     {
-        header('Location: '."/");
         $_SESSION["logueado"] = false;
+        header('Location: '."/");
     }
 }
