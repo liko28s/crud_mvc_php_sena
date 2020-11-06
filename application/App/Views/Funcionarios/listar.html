@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}MeDSyS - Administrador{% endblock %}
+
+{% block body %}
+<h2>Funcionarios</h2>
+<a href="/admin/usuarios/crear" class="btn btn-primary">Agregar Usuario</a>
+<table class="table mt-5">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for usuario in usuarios %}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{usuario.nombre}}</td>
+        <td>
+            <a href="/admin/usuarios/{{usuario.id}}/editar">{% include "icons/editar.html" %} Editar</a>
+            <a href="/admin/usuarios/{{usuario.id}}/borrar">{% include "icons/borrar.html" %} Eliminar</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

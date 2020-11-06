@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}MeDSyS - Administrador{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+{% if usuario %}
+    <h2>Editar Usuario {{usuario.nombre}}</h2>
+    <div class="col-2">
+        <form method="post">
+            <input type="hidden" name="id" id="id" value="{{usuario.id}}">
+            <div class="form-group">
+                <label for="nombre_usuario">Nombre</label>
+                <input value="{{usuario.nombre_usuario}}" type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" aria-describedby="nombre-ayuda">
+                <small id="nombre-ayuda" class="form-text text-muted">Este nombre de usuario se utiliza para iniciar sesión.</small>
+            </div>
+            <div class="form-group">
+                <label for="clave">Contraseña</label>
+                <input value="{{usuario.clave}}" type="password" class="form-control" id="clave" name="clave">
+            </div>
+
+            <div class="form-group">
+                <label for="cliente">Asociar Usuario a Cliente</label>
+                <select class="form-control" id="cliente">
+                    <option value="">Seleccione</option>
+                    {% for cliente in clientes %}
+                    <option value="{{cliente.id}}" {%if cliente.id == usuario.cliente %} selected {%endif%}>{{cliente.nombre_cliente}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="empresa">Asociar Usuario a Empresa</label>
+                <select class="form-control" id="empresa" name="empresa">
+                    <option value="">Seleccione</option>
+                    {% for empresa in empresas %}
+                    <option value="{{empresa.id}}" {%if empresa.id == usuario.empresa %} selected {%endif%}>{{empresa.nombre_empresa}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{% else %}
+    <h2>Agregar Usuario</h2>
+    <div class="col-2">
+        <form method="post">
+            <input type="hidden" name="id" id="id">
+            <div class="form-group">
+                <label for="nombre_usuario">Nombre</label>
+                <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" aria-describedby="nombre-ayuda">
+                <small id="nombre-ayuda" class="form-text text-muted">Este nombre de usuario se utiliza para iniciar sesión.</small>
+            </div>
+            <div class="form-group">
+                <label for="clave">Contraseña</label>
+                <input type="password" class="form-control" id="clave" name="clave">
+            </div>
+            <div class="form-group">
+                <label for="cliente">Asociar Usuario a Cliente</label>
+                <select class="form-control" id="cliente">
+                    <option value="">Seleccione</option>
+                    {% for cliente in clientes %}
+                    <option value="{{cliente.id}}">{{cliente.nombre_cliente}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="empresa">Asociar Usuario a Empresa</label>
+                <select class="form-control" id="empresa" name="empresa">
+                    <option value="">Seleccione</option>
+                    {% for empresa in empresas %}
+                    <option value="{{empresa.id}}" {%if empresa.id == usuario.empresa %} selected {%endif%}>{{empresa.nombre_empresa}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{% endif %}
+
+
+{% endblock %}

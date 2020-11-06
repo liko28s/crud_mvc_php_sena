@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}MeDSyS - Administrador{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+{% if plantilla %}
+ {% include plantilla %}
+{% endif %}
+{% endblock %}

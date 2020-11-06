@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}MeDSyS - Administrador{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+{% if cliente %}
+    <h2>Editar Cliente {{cliente.nombre_cliente}}</h2>
+    <div class="col-2">
+        <form method="post">
+            <input type="hidden" name="id" id="id" value="{{cliente.id}}">
+            <div class="form-group">
+                <label for="nombre_cliente">Nombre</label>
+                <input value="{{cliente.nombre_cliente}}" type="text" class="form-control" id="nombre_cliente" name="nombre_cliente">
+            </div>
+            <div class="form-group">
+                <label for="cedula">Cedula</label>
+                <input value="{{cliente.cedula}}" type="number" class="form-control" id="cedula" name="cedula">
+            </div>
+            <div class="form-group">
+                <label for="perfil">Perfil</label>
+                <input value="{{cliente.perfil}}" type="text" class="form-control" id="perfil" name="perfil">
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo</label>
+                <input value="{{cliente.correo}}" type="email" class="form-control" id="correo" name="correo">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <input value="{{cliente.telefono}}" type="tel" class="form-control" id="telefono" name="telefono">
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input value="{{cliente.direccion}}" type="address" class="form-control" id="direccion" name="direccion">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{% else %}
+    <h2>Agregar Cliente</h2>
+<div class="col-2">
+    <form method="post">
+        <input type="hidden" name="id" id="id" value="">
+        <div class="form-group">
+            <label for="nombre_cliente">Nombre</label>
+            <input value="" type="text" class="form-control" id="nombre_cliente" name="nombre_cliente">
+        </div>
+        <div class="form-group">
+            <label for="cedula">Cedula</label>
+            <input value="" type="number" class="form-control" id="cedula" name="cedula">
+        </div>
+        <div class="form-group">
+            <label for="perfil">Perfil</label>
+            <input value="" type="text" class="form-control" id="perfil" name="perfil">
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input value="" type="email" class="form-control" id="correo" name="correo">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input value="" type="tel" class="form-control" id="telefono" name="telefono">
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input value="" type="address" class="form-control" id="direccion" name="direccion">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock %}

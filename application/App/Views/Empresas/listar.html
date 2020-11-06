@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}MeDSyS - Administrador{% endblock %}
+
+{% block body %}
+<h2>Empresas</h2>
+<a href="/admin/empresas/crear" class="btn btn-primary">Agregar Empresa</a>
+<table class="table mt-5">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre Empresa</th>
+        <th scope="col">Nit</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for empresa in empresas %}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{empresa.nombre_empresa}}</td>
+        <td>{{empresa.nit}}</td>
+        <td>{{empresa.telefono_empresa}}</td>
+        <td>{{empresa.direccion_empresa}}</td>
+        <td>
+            <a href="/admin/empresas/{{empresa.id}}/editar">{% include "icons/editar.html" %} Editar</a>
+            <a href="/admin/empresas/{{empresa.id}}/borrar">{% include "icons/borrar.html" %} Eliminar</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

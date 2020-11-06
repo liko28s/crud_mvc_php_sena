@@ -1,0 +1,66 @@
+###############################################################################
+#                          Containers Para DB2                                #
+###############################################################################
+version: "3.1"
+services:
+    load-balancer:
+      image: nginx:alpine
+      container_name: load-balancer
+      working_dir: /application
+      volumes:
+          - ./application/:/application
+          - ./resources/nginx/proxy.conf:/etc/nginx/conf.d/default.conf
+          - ./resources/nginx/default.conf:/etc/nginx/nginx.conf
+      ports:
+       #O Exponer directamente en el puerto 80
+       - "80:80"
+      networks:
+        rami-cluster:
+            ipv4_address: 172.1.1.2
+     
+    server-one:
+      image: php:7.2-apache
+      container_name: server-one
+      build:
+        context: ./
+        dockerfile: resources/php/Dockerfile
+      working_dir: /var/www/html/
+      volumes:
+          - ./application/:/var/www/html/
+          - ./resources/php/000-default.conf/:/etc/apache2/apache2.conf
+      networks:
+        rami-cluster:
+            ipv4_address: 172.1.1.3
+
+    db:
+      image: mysql:latest
+      restart: always
+      command: --default-authentication-plugin=mysql_native_password
+      env_file:
+        - ./application/.env
+      ports:
+        - '3306:3306'
+      volumes:
+        - mi-base-datos:/var/lib/mysql
+      networks:
+        rami-cluster:
+          ipv4_address: 172.1.1.4
+
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
+      networks:
+        rami-cluster:
+          ipv4_address: 172.1.1.5
+
+volumes:
+  mi-base-datos:
+    
+networks:
+  rami-cluster:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.1.1.0/24
