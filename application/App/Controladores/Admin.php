@@ -2,6 +2,7 @@
 
 namespace App\Controladores;
 
+use App\Models\HojaDeVida;
 use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\Empresa;
@@ -77,6 +78,19 @@ class Admin extends \Core\Controlador
             $vacantesModel = new Vacante();
             $vacantes = $vacantesModel->getTodos();
             Vista::renderizarPlantilla('Admin/index.html',["plantilla"=>"vacantes/listar.html", "vacantes"=>$vacantes]);
+            return;
+        }
+
+        header('Location: '."/login");
+
+    }
+
+    public function hojasdevidaaccion()
+    {
+        if($this->estaLogueado) {
+            $hojasdevidaModel = new HojaDeVida();
+            $hojasdevida = $hojasdevidaModel->getTodos();
+            Vista::renderizarPlantilla('Admin/index.html',["plantilla"=>"hojasdevida/listar.html", "hojasdevida"=>$hojasdevida]);
             return;
         }
 

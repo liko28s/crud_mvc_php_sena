@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="cliente">Asociar Usuario a Cliente</label>
-                <select class="form-control" id="cliente">
+                <select class="form-control" id="cliente" name="cliente">
                     <option value="">Seleccione</option>
                     {% for cliente in clientes %}
                     <option value="{{cliente.id}}" {%if cliente.id == usuario.cliente %} selected {%endif%}>{{cliente.nombre_cliente}}</option>
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label for="cliente">Asociar Usuario a Cliente</label>
-                <select class="form-control" id="cliente">
+                <select class="form-control" id="cliente" name="cliente">
                     <option value="">Seleccione</option>
                     {% for cliente in clientes %}
                     <option value="{{cliente.id}}">{{cliente.nombre_cliente}}</option>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Laboremos SA - Administrador{% endblock %}
+
+{% block body %}
+<h2>Hojas de Vida</h2>
+<a href="/admin/hojasdevida/crear" class="btn btn-primary">Agregar Hoja de Vida</a>
+<table class="table mt-5">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for hojadevida in hojasdevida %}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{hojadevida.nombre_cliente}}</td>
+        <td>
+            <a href="/admin/hojasdevida/{{hojadevida.id}}/editar">{% include "icons/editar.html" %} Editar</a>
+            <a href="/admin/hojasdevida/{{hojadevida.id}}/borrar">{% include "icons/borrar.html" %} Eliminar</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

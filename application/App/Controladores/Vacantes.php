@@ -26,7 +26,7 @@ class Vacantes extends Admin
                     break;
                 case 'POST':
                     $vacanteModelo->actualizar($_POST);
-                    header('Location: '."/admin/empresas");
+                    header('Location: '."/admin/vacantes");
                     break;
             }
             return;

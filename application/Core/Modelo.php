@@ -39,7 +39,7 @@ abstract class Modelo
      */
     protected static function getValoresUpdate($datos) {
         $valores = "";
-        foreach (array_diff_key($datos, ["id"=>""]) as $columna => $valor) {
+        foreach (array_diff_key($datos, ["id"=>"", "eliminar"=>""]) as $columna => $valor) {
             $valores .= "$columna='$valor', ";
         }
         return trim($valores, ", ");
