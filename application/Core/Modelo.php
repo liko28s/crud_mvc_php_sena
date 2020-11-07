@@ -53,7 +53,9 @@ abstract class Modelo
     protected static function getColumnasInsert($datos) {
         $valores = "";
         foreach (array_diff_key($datos, ["id"=>""]) as $columna => $valor) {
-            $valores .= "$columna, ";
+            if($valor){
+                $valores .= "$columna, ";
+            }
         }
         return trim($valores, ", ");
     }
@@ -66,7 +68,9 @@ abstract class Modelo
     protected static function getValoresInsert($datos) {
         $valores = "";
         foreach (array_diff_key($datos, ["id"=>""]) as $columna => $valor) {
-            $valores .= "'{$valor}', ";
+            if($valor){
+                $valores .= "'{$valor}', ";
+            }
         }
         return trim($valores, ", ");
     }
