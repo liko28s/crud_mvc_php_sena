@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use App\Models\Cliente;
 use App\Models\Empresa;
 
+use App\Models\Vacante;
 use \Core\Vista;
 
 class Admin extends \Core\Controlador
@@ -70,17 +71,12 @@ class Admin extends \Core\Controlador
 
     }
 
-
-
-
-
-
-    public function funcionariosAccion()
+    public function vacantesAccion()
     {
         if($this->estaLogueado) {
-            $funcionarioModel = new Funcionario();
-            $funcionarios = $funcionarioModel->getTodos();
-            Vista::renderizarPlantilla('Admin/index.html',["plantilla"=>"funcionarios/listar.html", "funcionarios"=>$funcionarios]);
+            $vacantesModel = new Vacante();
+            $vacantes = $vacantesModel->getTodos();
+            Vista::renderizarPlantilla('Admin/index.html',["plantilla"=>"vacantes/listar.html", "vacantes"=>$vacantes]);
             return;
         }
 
@@ -88,32 +84,5 @@ class Admin extends \Core\Controlador
 
     }
 
-    public function hojasdevidaAccion()
-    {
-        if($this->estaLogueado) {
-            $hojaDeVidaModel = new HojaDeVida();
-            $hojasDeVida = $hojaDeVidaModel->getTodos();
-            Vista::renderizarPlantilla('Admin/index.html',["plantilla"=>"hojasdevida/listar.html", "hojasdevida"=>$hojasDeVida]);
-            return;
-        }
-
-        header('Location: '."/login");
-
-    }
-
-
-
-    public function contratacionAccion()
-    {
-        if($this->estaLogueado) {
-            $contratacionModelo = new Contratacion();
-            $contrataciones = $contratacionModelo->getTodos();
-            Vista::renderizarPlantilla('Admin/index.html',["plantilla"=>"contrataciones/listar.html", "contrataciones"=>$contrataciones]);
-            return;
-        }
-
-        header('Location: '."/login");
-
-    }
 
 }

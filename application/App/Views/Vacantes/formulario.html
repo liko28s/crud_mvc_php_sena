@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Laboremos SA - Administrador{% endblock %}
+
+{% block body %}
+{% include "header.html" %}
+{% if vacante %}
+<h2>Editar Vacante {{vacante.perfil}}</h2>
+<div class="col-2">
+    <form method="post">
+        <input type="hidden" name="id" id="id" value="{{vacante.id}}">
+        <div class="form-group">
+            <label for="empresa">Asociar Usuario a Empresa</label>
+            <select class="form-control" id="empresa" name="empresa">
+                <option value="">Seleccione</option>
+                {% for empresa in empresas %}
+                <option value="{{empresa.id}}" {%if empresa.id == vacante.empresa %} selected {%endif%}>{{empresa.nombre_empresa}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="perfil">Nombre</label>
+            <input value="{{vacante.perfil}}" type="text" class="form-control" id="perfil" name="perfil">
+        </div>
+        <div class="form-group">
+            <label for="fecha_apertura">Fecha de Apertura Vacante</label>
+            <input value="{{vacante.fecha_apertura}}" type="date" class="form-control" id="fecha_apertura" name="fecha_apertura">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% else %}
+<h2>Agregar Empresa</h2>
+<div class="col-2">
+    <form method="post">
+        <input type="hidden" name="id" id="id" value="">
+        <div class="form-group">
+            <label for="empresa">Asociar Usuario a Empresa</label>
+            <select class="form-control" id="empresa" name="empresa">
+                <option value="">Seleccione</option>
+                {% for empresa in empresas %}
+                <option value="{{empresa.id}}">{{empresa.nombre_empresa}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="perfil">Nombre</label>
+            <input value="" type="text" class="form-control" id="perfil" name="perfil">
+        </div>
+        <div class="form-group">
+            <label for="fecha_apertura">Fecha de Apertura Vacante</label>
+            <input value="" type="date" class="form-control" id="fecha_apertura" name="fecha_apertura">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endif %}
+
+
+{% endblock %}

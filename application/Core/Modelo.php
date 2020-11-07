@@ -66,7 +66,7 @@ abstract class Modelo
     protected static function getValoresInsert($datos) {
         $valores = "";
         foreach (array_diff_key($datos, ["id"=>""]) as $columna => $valor) {
-            $valores .= "'$valor', ";
+            $valores .= "'{$valor}', ";
         }
         return trim($valores, ", ");
     }

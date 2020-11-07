@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Laboremos SA - Administrador{% endblock %}
+
+{% block body %}
+<h2>Vacantes</h2>
+<a href="/admin/vacantes/crear" class="btn btn-primary">Agregar Vacante</a>
+<table class="table mt-5">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Perfil Requerido</th>
+        <th scope="col">Fecha Apertura</th>
+        <th scope="col">Empresa</th>
+        <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for vacante in vacantes %}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{vacante.perfil}}</td>
+        <td>{{vacante.fecha_apertura}}</td>
+        <td>{{vacante.nombre_empresa}}</td>
+        <td>
+            <a href="/admin/vacantes/{{vacante.id}}/editar">{% include "icons/editar.html" %} Editar</a>
+            <a href="/admin/vacantes/{{vacante.id}}/borrar">{% include "icons/borrar.html" %} Eliminar</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
