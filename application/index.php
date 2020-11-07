@@ -46,4 +46,4 @@ $router->agregar('imagenes/{formato:\w+}/{imagen:\w+}', ['controlador' => 'Image
 // Ruta general
 $router->agregar('{controlador}/{accion}');
     
-$router->ejecutar($_SERVER['QUERY_STRING']);
+$router->ejecutar(trim($_SERVER['QUERY_STRING'], "/"));
